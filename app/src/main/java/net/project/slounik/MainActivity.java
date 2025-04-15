@@ -14,7 +14,7 @@ import net.project.slounik.ui.dictionary.DictionaryFragment;
 import net.project.slounik.ui.dictionary.utils.DictionaryAdder;
 import net.project.slounik.utils.LocaleHelper;
 
-import com.example.slounik.R;
+import net.project.slounik.R;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.activity.result.ActivityResult;
@@ -27,7 +27,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.slounik.databinding.ActivityMainBinding;
+import net.project.slounik.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

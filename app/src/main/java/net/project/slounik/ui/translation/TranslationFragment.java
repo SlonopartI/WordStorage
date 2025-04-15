@@ -9,7 +9,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.slounik.databinding.FragmentTranslationBinding;
+import net.project.slounik.databinding.FragmentTranslationBinding;
 
 public class TranslationFragment extends Fragment {
 

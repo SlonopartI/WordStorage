@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.slounik.databinding.FragmentSettingsBinding;
+import net.project.slounik.databinding.FragmentSettingsBinding;
 import net.project.slounik.ui.translation.TranslationWordsWatcher;
 
 import net.project.slounik.utils.FinderThread;

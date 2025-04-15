@@ -25,7 +25,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import net.project.slounik.MainActivity;
-import com.example.slounik.databinding.FragmentDictionaryBinding;
+import net.project.slounik.databinding.FragmentDictionaryBinding;
 import net.project.slounik.utils.SimpleAdapter;
 
 import java.io.File;

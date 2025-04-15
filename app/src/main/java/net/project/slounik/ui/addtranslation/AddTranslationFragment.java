@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.slounik.databinding.FragmentAddtranslationBinding;
+import net.project.slounik.databinding.FragmentAddtranslationBinding;
 
 import java.io.BufferedWriter;
 import java.io.File;
