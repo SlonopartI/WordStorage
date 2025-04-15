@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_translation">
+
+    <fragment
+        android:id="@+id/nav_translation"
+        android:name="net.project.slounik.ui.translation.TranslationFragment"
+        android:label="@string/menu_translation"
+        tools:layout="@layout/fragment_translation" />
+    <fragment
+        android:id="@+id/nav_dictionary"
+        android:name="net.project.slounik.ui.dictionary.DictionaryFragment"
+        android:label="@string/dictionaryTitle"
+        tools:layout="@layout/fragment_dictionary">
+        <action
+            android:id="@+id/action_nav_dictionary_to_nav_translation"
+            app:destination="@id/nav_translation" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_addtranslation"
+        android:name="net.project.slounik.ui.addtranslation.AddTranslationFragment"
+        android:label="@string/addTranslation"
+        tools:layout="@layout/fragment_addtranslation">
+        <action
+            android:id="@+id/action_nav_addtranslation_to_nav_dictionary"
+            app:destination="@id/nav_dictionary" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="net.project.slounik.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_nav_translation"
+            app:destination="@id/nav_translation" />
+    </fragment>
+
+</navigation>

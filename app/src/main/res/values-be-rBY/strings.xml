@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Скарбонка слоў</string>
+    <string name="menu_translation">Пераклад слоў</string>
+    <string name="menu_dictionary">Выбар крыніц</string>
+    <string name="nav_header_title">Скарнік</string>
+    <string name="translationPlaceholder">Увядзіце слова</string>
+    <string name="deleteFAD">Выдаліць</string>
+    <string name="addFAD">Дабавіць</string>
+    <string name="addTranslation">Дабаўце пераклад</string>
+    <string name="dictionaryTitle">Актыўныя слоўнікі</string>
+    <string name="languageTextView">Мова</string>
+    <string name="settings">Наладкі</string>
+    <string name="delimeterTextView">Раздзяляльнік слова і яго перакладу</string>
+    <string name="delimeterHint">Увядзіце раздзяляльнік</string>
+    <string name="delimeterSave">Захаваць\nраздзяляльнік</string>
+    <string name="fromPage">З старонкі</string>
+    <string name="fromLine">З радка</string>
+    <string name="mode">Рэжым працы</string>
+    <string name="regex">Рэгулярны выраз</string>
+</resources>

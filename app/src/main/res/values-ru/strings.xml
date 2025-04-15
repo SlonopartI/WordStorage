@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Хранилище слов</string>
+    <string name="menu_translation">Перевод слов</string>
+    <string name="menu_dictionary">Выбор источников</string>
+    <string name="nav_header_title">Словарь</string>
+    <string name="translationPlaceholder">Введите слово</string>
+    <string name="deleteFAD">Удалить</string>
+    <string name="addFAD">Добавить</string>
+    <string name="addTranslation">Добавьте перевод</string>
+    <string name="dictionaryTitle">Активные словари</string>
+    <string name="languageTextView">Язык</string>
+    <string name="settings">Настройки</string>
+    <string name="delimeterTextView">Разделитель слова и его перевода</string>
+    <string name="delimeterHint">Введите разделитель</string>
+    <string name="delimeterSave">Сохранить\\nразделитель</string>
+    <string name="fromPage">С страницы</string>
+    <string name="fromLine">С строки</string>
+    <string name="mode">Режим работы</string>
+    <string name="regex">Регулярное выражение</string>
+</resources>
