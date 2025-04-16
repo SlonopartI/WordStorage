@@ -9,6 +9,7 @@ import net.project.slounik.utils.SQL.MultiDatabaseHelper;
 import net.project.slounik.utils.SQL.StorageUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +102,8 @@ public class TextFinder {
                 list.add(new Pair<>(array[i],array[i+1]));
             }
             helper.ultraFastInsert(list);
-            StorageUtils.exportDatabase(context,helper.getDatabaseName());
+            helper.forceClose();
+            //StorageUtils.saveDatabase(context.getApplicationContext(),helper.getDatabaseName());
             String searchable=this.str;
             for(int i=0;i<array.length-1;i+=2){
                 if(containsIgnoreCase(array[i],searchable)){

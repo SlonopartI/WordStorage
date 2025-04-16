@@ -119,7 +119,6 @@ public class SettingsFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("lang",currentLanguage);
-        //outState.putString("delimeter",TextFinder.getDelimiter());
     }
 
     @Override
@@ -127,7 +126,6 @@ public class SettingsFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
         if(savedInstanceState!=null){
             currentLanguage=savedInstanceState.getString("lang");
-            //TextFinder.setDelimiter(savedInstanceState.getString("delimeter"," "));
         }
     }
 }

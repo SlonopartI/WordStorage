@@ -19,7 +19,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.slounik"
+        applicationId "net.project.slounik"
         minSdk 26
         targetSdk 34
         versionCode 1

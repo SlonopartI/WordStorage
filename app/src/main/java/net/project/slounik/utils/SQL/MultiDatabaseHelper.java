@@ -12,19 +12,19 @@ import net.project.slounik.utils.ComparatorForMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class MultiDatabaseHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2; // Увеличиваем версию
+    private static final int DATABASE_VERSION = 2;
     private final String databaseName;
 
     public static final String TABLE_WORDS = "words";
     public static final String COLUMN_WORD = "word";
     public static final String COLUMN_TRANSLATION = "translation";
 
-    // Новая структура таблицы с составным уникальным ключом
     private static final String CREATE_TABLE_V2 =
-            "CREATE TABLE IF NOT EXISTS " + TABLE_WORDS + "(" +
+            "CREATE TABLE IF NOT EXISTS "+ TABLE_WORDS + "(" +
                     COLUMN_WORD + " TEXT, " +
                     COLUMN_TRANSLATION + " TEXT, " +
                     "UNIQUE(" + COLUMN_WORD + ", " + COLUMN_TRANSLATION + ") ON CONFLICT IGNORE)";
@@ -44,7 +44,6 @@ public class MultiDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Миграция данных при обновлении
         if (oldVersion < 2) {
             db.execSQL("CREATE TEMPORARY TABLE temp_words(word, translation)");
             db.execSQL("INSERT INTO temp_words SELECT word, translation FROM words");
@@ -55,40 +54,38 @@ public class MultiDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // Метод для получения TreeMap
     public TreeMap<String, ArrayList<String>> getTranslationsMap(String s) {
         TreeMap<String, ArrayList<String>> map = new TreeMap<>(new ComparatorForMap(s));
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(
+        String selection = COLUMN_WORD + " LIKE ? COLLATE NOCASE";
+        String[] selectionArgs = new String[]{"%" + s + "%"};
+
+        try (Cursor cursor = db.query(
                 TABLE_WORDS,
                 new String[]{COLUMN_WORD, COLUMN_TRANSLATION},
-                null, null, null, null,
-                COLUMN_WORD + " COLLATE NOCASE" // Сортировка без учета регистра
-        );
+                selection,
+                selectionArgs,
+                null,
+                null,
+                COLUMN_WORD + " COLLATE NOCASE"
+        )) {
+            int wordIndex = cursor.getColumnIndex(COLUMN_WORD);
+            int translationIndex = cursor.getColumnIndex(COLUMN_TRANSLATION);
 
-        if (cursor.moveToFirst()) {
-            do {
-                String word = cursor.getString(0);
-                String translation = cursor.getString(1);
+            while (cursor.moveToNext()) {
+                String word = cursor.getString(wordIndex);
+                String translation = cursor.getString(translationIndex);
 
-                if (!map.containsKey(word)) {
-                    map.put(word, new ArrayList<>());
-                }
+                ArrayList<String> translations = map.computeIfAbsent(word, k -> new ArrayList<>());
 
-                ArrayList<String> translations = map.get(word);
-                if (!translations.contains(translation)) {
-                    translations.add(translation);
-                }
-            } while (cursor.moveToNext());
+                translations.add(translation);
+            }
         }
-
-        cursor.close();
         db.close();
         return map;
     }
 
-    // Улучшенный метод добавления перевода
     public long addTranslation(String word, String translation) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -107,7 +104,6 @@ public class MultiDatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    // Метод для получения всех переводов конкретного слова
     public ArrayList<String> getTranslationsForWord(String word) {
         ArrayList<String> translations = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -139,8 +135,7 @@ public class MultiDatabaseHelper extends SQLiteOpenHelper {
     public void ultraFastInsert(List<Pair<String, String>> data) {
         SQLiteDatabase db = getWritableDatabase();
 
-        // Оптимизация параметров
-        db.execSQL("PRAGMA cache_size = -10000");  // 10MB кэша
+        db.execSQL("PRAGMA cache_size = -10000");
         db.execSQL("PRAGMA temp_store = MEMORY");
         db.rawQuery("PRAGMA locking_mode = EXCLUSIVE",null).close();
 
@@ -165,5 +160,18 @@ public class MultiDatabaseHelper extends SQLiteOpenHelper {
             db.rawQuery("PRAGMA locking_mode = NORMAL",null).close();
             db.close();
         }
+    }
+    public static boolean containsIgnoreCase(String str, String searchStr)     {
+        if(str == null || searchStr == null) return false;
+
+        final int length = searchStr.length();
+        if (length == 0)
+            return false;
+
+        for (int i = str.length() - length; i >= 0; i--) {
+            if (str.regionMatches(true, i, searchStr, 0, length))
+                return true;
+        }
+        return false;
     }
 }

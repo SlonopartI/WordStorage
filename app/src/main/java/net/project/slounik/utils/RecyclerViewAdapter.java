@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.project.slounik.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.TreeMap;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
