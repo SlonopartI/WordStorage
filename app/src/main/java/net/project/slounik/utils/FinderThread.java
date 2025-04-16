@@ -49,7 +49,6 @@ public class FinderThread extends Thread {
         if(finder.getFileName().lastIndexOf(".")!=-1){
             map = new TreeMap<>(new ComparatorForMap(finder.getStr()));
             if(folder.exists()){
-                System.err.println("mode:"+mode);
                 Thread thread=new Thread(){
                     @Override
                     public void run() {
