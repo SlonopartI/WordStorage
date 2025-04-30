@@ -5,8 +5,8 @@
     <string name="nav_header_title">Скарнік</string>
     <string name="translationPlaceholder">Увядзіце слова</string>
     <string name="deleteFAD">Выдаліць</string>
-    <string name="addFAD">Дабавіць</string>
-    <string name="addTranslation">Дабаўце пераклад</string>
+    <string name="addFAD">Дадаць</string>
+    <string name="addTranslation">Дадайце пераклад</string>
     <string name="dictionaryTitle">Актыўныя слоўнікі</string>
     <string name="languageTextView">Мова</string>
     <string name="settings">Наладкі</string>

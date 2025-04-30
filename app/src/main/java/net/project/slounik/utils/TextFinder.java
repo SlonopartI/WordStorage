@@ -96,14 +96,15 @@ public class TextFinder {
                 tempList.add(text2);
             }
             String[] array=tempList.toArray(new String[0]);
-            MultiDatabaseHelper helper=new MultiDatabaseHelper(context,fileName.substring(0,fileName.lastIndexOf("."))+".db");
-            List<Pair<String,String>> list=new ArrayList<>();
-            for(int i=0;i+1<array.length;i+=2){
-                list.add(new Pair<>(array[i],array[i+1]));
+            if(!this.fileName.equals("userTranslations.txt")){
+                MultiDatabaseHelper helper=new MultiDatabaseHelper(context,fileName.substring(0,fileName.lastIndexOf("."))+".db");
+                List<Pair<String,String>> list=new ArrayList<>();
+                for(int i=0;i+1<array.length;i+=2){
+                    list.add(new Pair<>(array[i],array[i+1]));
+                }
+                helper.ultraFastInsert(list);
+                helper.forceClose();
             }
-            helper.ultraFastInsert(list);
-            helper.forceClose();
-            //StorageUtils.saveDatabase(context.getApplicationContext(),helper.getDatabaseName());
             String searchable=this.str;
             for(int i=0;i<array.length-1;i+=2){
                 if(containsIgnoreCase(array[i],searchable)){
